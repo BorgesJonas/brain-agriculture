@@ -162,6 +162,7 @@ export const planted_crops_validation = {
   label: "Culturas",
   options: crops,
   id: "plantedCrops",
+  isMulti: true,
   validation: {
     required: {
       value: true,

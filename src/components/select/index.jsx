@@ -8,9 +8,27 @@ import { findInputError, isFormInvalid } from "../../utils";
 
 import * as Styles from "./styles";
 
-export function Select({ options, validation, ...props }) {
+const CloseIcon = () => {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      width="14"
+      height="14"
+      stroke="#fff"
+      strokeWidth="2"
+      fill="none"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <line x1="18" y1="6" x2="6" y2="18"></line>
+      <line x1="6" y1="6" x2="18" y2="18"></line>
+    </svg>
+  );
+};
+
+export function Select({ options, validation, isMulti, ...props }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedValue, setSelectedValue] = useState(null);
+  const [selectedValue, setSelectedValue] = useState(isMulti ? [] : "");
   const [searchValue, setSearchValue] = useState("");
   const searchRef = useRef();
   const inputRef = useRef();
@@ -28,8 +46,20 @@ export function Select({ options, validation, ...props }) {
   }
 
   function onItemClick(option) {
-    setSelectedValue(option);
-    setValue(props.name, option.value);
+    let newValue;
+    if (isMulti) {
+      if (selectedValue.find((selected) => selected.value === option.value)) {
+        newValue = selectedValue.filter(
+          (selected) => selected.value !== option.value
+        );
+      } else {
+        newValue = [...selectedValue, option];
+      }
+    } else {
+      newValue = option;
+    }
+    setSelectedValue(newValue);
+    setValue(props.name, newValue);
   }
 
   function onSearch(e) {
@@ -55,6 +85,10 @@ export function Select({ options, validation, ...props }) {
   }, [isOpen]);
 
   useEffect(() => {
+    console.log("SELECTED", selectedValue);
+  }, [selectedValue]);
+
+  useEffect(() => {
     const handler = (e) => {
       if (inputRef.current && !inputRef.current.contains(e.target)) {
         setIsOpen(false);
@@ -67,6 +101,33 @@ export function Select({ options, validation, ...props }) {
       window.removeEventListener("click", handler);
     };
   }, []);
+
+  function onTagRemove(option) {
+    const newValue = selectedValue.filter((o) => o.value !== option.value);
+    setSelectedValue(newValue);
+    // onChange(newValue);
+  }
+
+  function getDisplay() {
+    if (isMulti) {
+      return (
+        <Styles.MultiTags>
+          {selectedValue.map((option) => (
+            <div key={option.value}>
+              {option.label}
+              <button
+                onClick={() => onTagRemove(option)}
+                className="dropdown-tag-close"
+              >
+                <CloseIcon />
+              </button>
+            </div>
+          ))}
+        </Styles.MultiTags>
+      );
+    }
+    return selectedValue.label;
+  }
 
   return (
     <Styles.SelectWrapper>
@@ -82,14 +143,13 @@ export function Select({ options, validation, ...props }) {
         </AnimatePresence>
       </Styles.LabelWrapper>
       <Styles.InputWrapper onClick={handleInputClick}>
+        <Styles.SelectValue>{getDisplay()}</Styles.SelectValue>
         <Styles.Input
+          value=""
           {...register(props.name, validation)}
           ref={inputRef}
-          value={selectedValue?.label || ""}
         />
-        <Styles.IconWrapper>
-          <Styles.Icon isOpen={isOpen} />
-        </Styles.IconWrapper>
+        <Styles.OpenButton onClick={handleInputClick} isOpen={isOpen} />
       </Styles.InputWrapper>
       {isOpen && (
         <Styles.OptionsList>

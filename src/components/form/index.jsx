@@ -22,7 +22,7 @@ import * as Styles from "./styles";
 export const Form = () => {
   const methods = useForm();
   const [success, setSuccess] = useState(false);
-  console.log("WATCH", methods.watch());
+  // console.log("WATCH", methods.watch());
   const onSubmit = methods.handleSubmit((data) => {
     console.log(data);
     methods.reset();

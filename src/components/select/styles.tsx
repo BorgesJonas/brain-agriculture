@@ -35,37 +35,50 @@ export const Input = styled("input")`
   cursor: pointer;
 `;
 
-export const IconWrapper = styled("div")`
+export const OpenButton = styled(({ className, isOpen, onClick }) => (
+  <button
+    className={className}
+    onClick={(e) => {
+      e.stopPropagation();
+      onClick();
+    }}
+  >
+    <svg
+      viewBox="0 0 24 24"
+      width="18"
+      height="18"
+      stroke="#222"
+      strokeWidth="1.5"
+      fill="none"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <polyline points="6 9 12 15 18 9" />
+    </svg>
+  </button>
+))`
   position: absolute;
-  right: 16px;
+  pointer-events: auto;
+  right: 8px;
   top: 50%;
   transform: translateY(-50%);
-`;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
 
-export const Icon = styled(({ className, isOpen }) => (
-  <svg
-    viewBox="0 0 24 24"
-    width="18"
-    height="18"
-    stroke="#222"
-    strokeWidth="1.5"
-    fill="none"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    className={className}
-  >
-    <polyline points="6 9 12 15 18 9" />
-  </svg>
-))`
-  -webkit-transition: all 0.2s ease-in-out;
-  transition: all 0.2s ease-in-out;
+  svg {
+    -webkit-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+  }
 
   ${({ isOpen }) =>
     isOpen &&
     css`
-      -webkit-transform: rotate(180deg);
-      -ms-transform: rotate(180deg);
-      transform: rotate(180deg);
+      svg {
+        -webkit-transform: rotate(180deg);
+        -ms-transform: rotate(180deg);
+        transform: rotate(180deg);
+      }
     `}
 `;
 
@@ -117,4 +130,19 @@ export const Option = styled("li")`
   transition: background-color 0.35s ease;
   border-radius: 6px;
   font-weight: 500;
+`;
+
+export const SelectValue = styled("div")`
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 1.25rem;
+  font-weight: 500;
+  font-size: 0.875rem;
+`;
+
+export const MultiTags = styled("div")`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 `;

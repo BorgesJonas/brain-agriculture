@@ -1,10 +1,9 @@
-import { useEffect, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
-import { GrMail } from "react-icons/gr";
-import { BsFillCheckSquareFill } from "react-icons/bs";
+import { toast } from "react-toastify";
 
-import { Input } from "../input";
-import { SelectTest } from "../select";
+import { Input, SelectTest, Button } from "../index";
+import { useClientsContext } from "../../context";
+import { maskedNumberStringToNumber } from "../../utils/masks";
 import {
   document_validation,
   productor_name_validation,
@@ -19,14 +18,46 @@ import {
 
 import * as Styles from "./styles";
 
-export const Form = () => {
+export function Form() {
   const methods = useForm();
-  const [success, setSuccess] = useState(false);
+  const { onAddClient, clients } = useClientsContext();
 
-  function onSubmit(data) {
-    console.log(data);
+  function createId() {
+    return clients[clients.length - 1]?.id + 1 || 1;
+  }
+
+  function onSubmit(clientData) {
+    if (clients.find((client) => client.document === clientData.document)) {
+      toast.error("Documento já cadastrado!", { theme: "colored" });
+      return;
+    }
+
+    const agricultutalArea = maskedNumberStringToNumber(
+      clientData.agricultutalArea
+    );
+    const vegetationArea = maskedNumberStringToNumber(
+      clientData.vegetationArea
+    );
+    const totalArea = maskedNumberStringToNumber(clientData.totalArea);
+
+    if (agricultutalArea + vegetationArea > totalArea) {
+      toast.error(
+        "Área Agricultável e área de vegetação não podem ser maiores que a área total",
+        { theme: "colored" }
+      );
+      return;
+    }
+
+    const client = {
+      ...clientData,
+      id: createId(),
+      agricultutalArea,
+      vegetationArea,
+      totalArea,
+    };
+    onAddClient(client);
     methods.reset();
-    setSuccess(true);
+    toast.success("Cadastrado com sucesso!", { theme: "colored" });
   }
 
   return (
@@ -46,23 +77,9 @@ export const Form = () => {
           <Input {...agricultutal_area_validation} />
           <Input {...vegetation_area_validation} />
           <SelectTest {...planted_crops_validation} />
+          <Button type="submit">Cadastrar</Button>
         </Styles.FormInputs>
-        <div>
-          {success && (
-            <p className="font-semibold text-green-500 mb-5 flex items-center gap-1">
-              <BsFillCheckSquareFill /> Form has been submitted successfully
-            </p>
-          )}
-        </div>
-        <button type="submit">
-          <GrMail />
-          Submit Form
-        </button>
       </Styles.Form>
-      <button onClick={() => methods.reset()}>
-        <GrMail />
-        reset Form
-      </button>
     </FormProvider>
   );
-};
+}

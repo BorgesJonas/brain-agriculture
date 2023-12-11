@@ -1,4 +1,4 @@
-import { documentMask, numberFormat } from "./masks";
+import { documentMask, numberMask } from "./masks";
 import { states, crops } from "./consts";
 
 export const document_validation = {
@@ -84,7 +84,7 @@ export const total_area_validation = {
   name: "totalArea",
   label: "Área total",
   id: "totalArea",
-  maskFn: numberFormat,
+  maskFn: numberMask,
   validation: {
     required: {
       value: true,
@@ -98,7 +98,7 @@ export const agricultutal_area_validation = {
   label: "Área agricultável",
   type: "text",
   id: "agricultutalArea",
-  maskFn: numberFormat,
+  maskFn: numberMask,
   validation: {
     required: {
       value: true,
@@ -112,7 +112,7 @@ export const vegetation_area_validation = {
   label: "Área de vegetação",
   type: "text",
   id: "vegetationArea",
-  maskFn: numberFormat,
+  maskFn: numberMask,
   validation: {
     required: {
       value: true,
@@ -127,7 +127,7 @@ export const planted_crops_validation = {
   options: crops,
   id: "plantedCrops",
   isMulti: true,
-  maskFn: numberFormat,
+  maskFn: numberMask,
   validation: {
     required: {
       value: true,

@@ -2,9 +2,13 @@ export function documentMask(value) {
   return value?.length <= 14 ? maskCpf(value) : maskCnpj(value);
 }
 
-export function numberFormat(value) {
+export function numberMask(value) {
   const newValue = parseFloat(value.replace(/[^\d]/g, ""));
   return isNaN(newValue) ? "" : newValue.toLocaleString("pt-BR");
+}
+
+export function maskedNumberStringToNumber(value) {
+  return parseFloat(value.replace(/\./g, ""));
 }
 
 function maskCpf(value) {

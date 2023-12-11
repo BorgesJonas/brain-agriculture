@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { findInputError, isFormInvalid } from "../../utils";
 import { useFormContext } from "react-hook-form";
 import { AnimatePresence } from "framer-motion";
@@ -8,23 +8,18 @@ import { InputError } from "../input-error";
 import * as Styles from "./styles";
 
 export function Input({ validation, className, maskFn, ...props }) {
-  const [value, setValue] = useState("");
   const {
     register,
     formState: { errors },
   } = useFormContext();
-
   const inputErrors = findInputError(errors, props.name);
   const isInvalid = isFormInvalid(inputErrors);
 
-  const handleChange = (event) => {
+  function handleChange(event) {
     if (maskFn) {
-      setValue(maskFn(event.target.value));
-      return;
+      event.target.value = maskFn(event.target.value);
     }
-
-    setValue(event.target.value);
-  };
+  }
 
   return (
     <Styles.InputWrapper className={className}>
@@ -43,7 +38,6 @@ export function Input({ validation, className, maskFn, ...props }) {
       <Styles.Input
         {...register(props.name, validation)}
         {...props}
-        value={value}
         onChange={handleChange}
       />
     </Styles.InputWrapper>

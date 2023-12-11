@@ -4,7 +4,7 @@ import { GrMail } from "react-icons/gr";
 import { BsFillCheckSquareFill } from "react-icons/bs";
 
 import { Input } from "../input";
-import { Select } from "../select";
+import { SelectTest } from "../select";
 import {
   document_validation,
   productor_name_validation,
@@ -22,17 +22,17 @@ import * as Styles from "./styles";
 export const Form = () => {
   const methods = useForm();
   const [success, setSuccess] = useState(false);
-  // console.log("WATCH", methods.watch());
-  const onSubmit = methods.handleSubmit((data) => {
+
+  function onSubmit(data) {
     console.log(data);
     methods.reset();
     setSuccess(true);
-  });
+  }
 
   return (
     <FormProvider {...methods}>
       <Styles.Form
-        onSubmit={(e) => e.preventDefault()}
+        onSubmit={methods.handleSubmit(onSubmit)}
         noValidate
         autoComplete="off"
       >
@@ -40,12 +40,12 @@ export const Form = () => {
           <Input {...document_validation} />
           <Input {...productor_name_validation} />
           <Input {...farm_name_validation} />
-          <Select {...state_validation} />
+          <SelectTest {...state_validation} />
           <Input {...city_validation} />
           <Input {...total_area_validation} />
           <Input {...agricultutal_area_validation} />
           <Input {...vegetation_area_validation} />
-          <Select {...planted_crops_validation} />
+          <SelectTest {...planted_crops_validation} />
         </Styles.FormInputs>
         <div>
           {success && (
@@ -53,12 +53,16 @@ export const Form = () => {
               <BsFillCheckSquareFill /> Form has been submitted successfully
             </p>
           )}
-          <button onClick={onSubmit}>
-            <GrMail />
-            Submit Form
-          </button>
         </div>
+        <button type="submit">
+          <GrMail />
+          Submit Form
+        </button>
       </Styles.Form>
+      <button onClick={() => methods.reset()}>
+        <GrMail />
+        reset Form
+      </button>
     </FormProvider>
   );
 };

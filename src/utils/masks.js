@@ -3,8 +3,12 @@ export function documentMask(value) {
 }
 
 export function numberMask(value) {
-  const newValue = parseFloat(value.replace(/[^\d]/g, ""));
+  const newValue = parseFloat(value.toString().replace(/[^\d]/g, ""));
   return isNaN(newValue) ? "" : newValue.toLocaleString("pt-BR");
+}
+
+export function unmaskDocument(value) {
+  return value.replace(/[/ .-]/g, "");
 }
 
 export function maskedNumberStringToNumber(value) {

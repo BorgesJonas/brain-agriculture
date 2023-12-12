@@ -1,11 +1,12 @@
-import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import { FormProvider, useForm } from "react-hook-form";
 import { toast } from "react-toastify";
+import { v4 as uuid } from "uuid";
 
 import { Input, SelectTest, Button, Modal } from "src/components";
 import { useClientsContext } from "src/context";
-import { maskedNumberStringToNumber } from "src/utils";
+import { maskedNumberStringToNumber, unmaskDocument } from "src/utils";
 import {
   document_validation,
   productor_name_validation,
@@ -22,35 +23,42 @@ import * as Styles from "./styles";
 
 export function Register() {
   const { id } = useParams();
+  const navigate = useNavigate();
   const methods = useForm();
+  const { handleSubmit, setValue, reset } = methods;
   const [isModalVisible, setModalVisible] = useState(false);
-  const { onAddClient, clients } = useClientsContext();
+  const { clients, onAddClient, onUpdateClient, onDeleteClient } =
+    useClientsContext();
 
   function handleModalVisible() {
     setModalVisible(!isModalVisible);
   }
 
-  function createId() {
-    return clients[clients.length - 1]?.id + 1 || 1;
+  function handleDeleteClient() {
+    onDeleteClient(id);
+    toast.error("Cadastro excluído com sucesso", { theme: "colored" });
+    navigate("/dashboard");
   }
 
   function onSubmit(clientData) {
-    if (clients.find((client) => client.document === clientData.document)) {
+    if (
+      !id &&
+      clients.find((client) => client.document === clientData.document)
+    ) {
       toast.error("Documento já cadastrado!", { theme: "colored" });
       return;
     }
 
-    const agricultutalArea = maskedNumberStringToNumber(
-      clientData.agricultutalArea
-    );
+    const client = {
+      ...clientData,
+      id: id ? id : uuid(),
+      document: unmaskDocument(clientData.document),
+      agricultutalArea: maskedNumberStringToNumber(clientData.agricultutalArea),
+      vegetationArea: maskedNumberStringToNumber(clientData.vegetationArea),
+      totalArea: maskedNumberStringToNumber(clientData.totalArea),
+    };
 
-    const vegetationArea = maskedNumberStringToNumber(
-      clientData.vegetationArea
-    );
-
-    const totalArea = maskedNumberStringToNumber(clientData.totalArea);
-
-    if (agricultutalArea + vegetationArea > totalArea) {
+    if (client.agricultutalArea + client.vegetationArea > client.totalArea) {
       toast.error(
         "Área Agricultável e área de vegetação não podem ser maiores que a área total",
         { theme: "colored" }
@@ -58,22 +66,34 @@ export function Register() {
       return;
     }
 
-    const client = {
-      ...clientData,
-      id: createId(),
-      agricultutalArea,
-      vegetationArea,
-      totalArea,
-    };
-    onAddClient(client);
-    methods.reset();
-    toast.success("Cadastrado com sucesso!", { theme: "colored" });
+    if (id) {
+      onUpdateClient(client);
+    } else {
+      onAddClient(client);
+      reset();
+    }
+    console.log(client);
+    toast.success(
+      id ? "Cadastro atualizado com sucesso" : "Cadastrado com sucesso!",
+      { theme: "colored" }
+    );
   }
+
+  useEffect(() => {
+    if (id && clients.length) {
+      const client = clients.find((client) => client.id === id);
+      Object.keys(client).map((field) => {
+        setValue(field, client[field]);
+      });
+    } else {
+      reset();
+    }
+  }, [id, clients]); // eslint-disable-line
 
   return (
     <FormProvider {...methods}>
       <Styles.Form
-        onSubmit={methods.handleSubmit(onSubmit)}
+        onSubmit={handleSubmit(onSubmit)}
         noValidate
         autoComplete="off"
       >
@@ -87,10 +107,10 @@ export function Register() {
           <Input {...agricultutal_area_validation} />
           <Input {...vegetation_area_validation} />
           <SelectTest {...planted_crops_validation} />
-          <Button type="submit">Cadastrar</Button>
+          <Button type="submit">{id ? "Editar" : "Cadastrar"}</Button>
           {id && (
-            <Button type="button" onClick={handleModalVisible} danger>
-              Delete
+            <Button type="button" onClick={handleModalVisible} danger={true}>
+              Excluir
             </Button>
           )}
         </Styles.FormInputs>
@@ -98,6 +118,7 @@ export function Register() {
       <Modal
         title="Excluir Cadastro"
         message="Você deseja proseguir com a exclusão do cadastro?"
+        onConfirm={handleDeleteClient}
         onClose={handleModalVisible}
         isVisible={isModalVisible}
       />

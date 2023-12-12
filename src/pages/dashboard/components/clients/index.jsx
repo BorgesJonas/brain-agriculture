@@ -1,7 +1,7 @@
 import { useClientsContext } from "src/context";
 import { FaEdit } from "react-icons/fa";
 
-import { numberMask } from "src/utils";
+import { numberMask, documentMask } from "src/utils";
 
 import * as Styles from "./styles";
 
@@ -22,7 +22,7 @@ export function Clients() {
             <Styles.PanelContent>
               <Styles.PanelRow>
                 <p>
-                  <strong>CPF/CNPJ:</strong> {client.document}
+                  <strong>CPF/CNPJ:</strong> {documentMask(client.document)}
                 </p>
                 <p>
                   <strong>Nome da Fazenda:</strong> {client.farmName}

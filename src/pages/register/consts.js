@@ -108,7 +108,6 @@ export const agricultutal_area_validation = {
 export const vegetation_area_validation = {
   name: "vegetationArea",
   label: "Área de vegetação",
-  type: "text",
   id: "vegetationArea",
   maskFn: numberMask,
   validation: {

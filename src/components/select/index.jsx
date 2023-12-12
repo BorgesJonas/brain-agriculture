@@ -47,6 +47,7 @@ export function SelectTest({ options, validation, isMulti, ...props }) {
             name={name}
             ref={ref}
             styles={selectStyles}
+            noOptionsMessage={() => "Nenhum resultado encontrado"}
           />
         </Styles.SelectWrapper>
       )}

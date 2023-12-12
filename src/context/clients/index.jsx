@@ -12,9 +12,23 @@ export function ClientsProvider({ children }) {
     setClients([...clients, client]);
   }
 
+  function handleUpdateClient(clientNewDatA) {
+    const newClients = clients.map((client) =>
+      client.id === clientNewDatA.id ? clientNewDatA : client
+    );
+    setClients(newClients);
+  }
+
+  function handleDeleteClient(id) {
+    const newClients = clients.filter((client) => client.id === id);
+    setClients(newClients);
+  }
+
   const value = {
     clients,
     onAddClient: handleAddClient,
+    onUpdateClient: handleUpdateClient,
+    onDeleteClient: handleDeleteClient,
   };
 
   useEffect(() => {

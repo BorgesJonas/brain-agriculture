@@ -1,6 +1,10 @@
 /* eslint-disable react/prop-types */
 import * as Styles from "./styles";
 
-export function Button(props) {
-  return <Styles.Button {...props}>{props.children}</Styles.Button>;
+export function Button({ danger, ...props }) {
+  return (
+    <Styles.Button {...props} danger={danger}>
+      {props.children}
+    </Styles.Button>
+  );
 }

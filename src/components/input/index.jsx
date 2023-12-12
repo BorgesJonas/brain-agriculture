@@ -35,7 +35,7 @@ export function Input({ validation, maskFn, ...props }) {
               )}
             </AnimatePresence>
           </Styles.LabelWrapper>
-          <InputComponent {...field} maskFn={maskFn} />
+          <InputComponent {...field} {...props} maskFn={maskFn} />
         </Styles.InputWrapper>
       )}
     />

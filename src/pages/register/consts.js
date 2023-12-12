@@ -1,5 +1,4 @@
-import { documentMask, numberMask } from "./masks";
-import { states, crops } from "./consts";
+import { states, crops, documentMask, numberMask } from "src/utils";
 
 export const document_validation = {
   name: "document",
@@ -96,7 +95,6 @@ export const total_area_validation = {
 export const agricultutal_area_validation = {
   name: "agricultutalArea",
   label: "Área agricultável",
-  type: "text",
   id: "agricultutalArea",
   maskFn: numberMask,
   validation: {

@@ -1,9 +1,11 @@
+import { useState } from "react";
+import { useParams } from "react-router-dom";
 import { FormProvider, useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 
-import { Input, SelectTest, Button } from "../index";
-import { useClientsContext } from "../../context";
-import { maskedNumberStringToNumber } from "../../utils/masks";
+import { Input, SelectTest, Button, Modal } from "src/components";
+import { useClientsContext } from "src/context";
+import { maskedNumberStringToNumber } from "src/utils";
 import {
   document_validation,
   productor_name_validation,
@@ -14,13 +16,19 @@ import {
   agricultutal_area_validation,
   vegetation_area_validation,
   planted_crops_validation,
-} from "../../utils/inputValidations";
+} from "./consts";
 
 import * as Styles from "./styles";
 
-export function Form() {
+export function Register() {
+  const { id } = useParams();
   const methods = useForm();
+  const [isModalVisible, setModalVisible] = useState(false);
   const { onAddClient, clients } = useClientsContext();
+
+  function handleModalVisible() {
+    setModalVisible(!isModalVisible);
+  }
 
   function createId() {
     return clients[clients.length - 1]?.id + 1 || 1;
@@ -35,9 +43,11 @@ export function Form() {
     const agricultutalArea = maskedNumberStringToNumber(
       clientData.agricultutalArea
     );
+
     const vegetationArea = maskedNumberStringToNumber(
       clientData.vegetationArea
     );
+
     const totalArea = maskedNumberStringToNumber(clientData.totalArea);
 
     if (agricultutalArea + vegetationArea > totalArea) {
@@ -78,8 +88,19 @@ export function Form() {
           <Input {...vegetation_area_validation} />
           <SelectTest {...planted_crops_validation} />
           <Button type="submit">Cadastrar</Button>
+          {id && (
+            <Button type="button" onClick={handleModalVisible} danger>
+              Delete
+            </Button>
+          )}
         </Styles.FormInputs>
       </Styles.Form>
+      <Modal
+        title="Excluir Cadastro"
+        message="Você deseja proseguir com a exclusão do cadastro?"
+        onClose={handleModalVisible}
+        isVisible={isModalVisible}
+      />
     </FormProvider>
   );
 }

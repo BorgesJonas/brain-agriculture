@@ -12,4 +12,8 @@ export const FormInputs = styled("div")`
   display: grid;
   gap: 1.25rem;
   grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
 `;

@@ -1,0 +1,28 @@
+{
+  "clients": [
+    {
+      "document": "02714896006",
+      "productorName": "Jonas Borges",
+      "farmName": "Farm Teste",
+      "state": {
+        "value": "RS",
+        "label": "Rio Grande do Sul"
+      },
+      "city": "Porto Alegre",
+      "totalArea": 12000,
+      "agricultutalArea": 1000,
+      "vegetationArea": 1000,
+      "plantedCrops": [
+        {
+          "value": "soja",
+          "label": "Soja"
+        },
+        {
+          "value": "algodao",
+          "label": "Algodão"
+        }
+      ],
+      "id": "070e5c5e-e059-4aaa-91db-879c7a982c64"
+    }
+  ]
+}

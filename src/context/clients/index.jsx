@@ -1,6 +1,7 @@
-/* eslint-disable react-refresh/only-export-components */
 /* eslint-disable react/prop-types */
+/* eslint-disable react-refresh/only-export-components */
 import { createContext, useContext, useState, useEffect } from "react";
+import { getClients, postClient, putClient, deleteClient } from "src/services";
 
 export const ClientsContext = createContext({});
 export const useClientsContext = () => useContext(ClientsContext);
@@ -9,19 +10,23 @@ export function ClientsProvider({ children }) {
   const [clients, setClients] = useState([]);
 
   function handleAddClient(client) {
-    setClients([...clients, client]);
+    postClient(client).then((data) => setClients([...clients, data]));
   }
 
-  function handleUpdateClient(clientNewDatA) {
-    const newClients = clients.map((client) =>
-      client.id === clientNewDatA.id ? clientNewDatA : client
-    );
-    setClients(newClients);
+  function handleUpdateClient(clientNewData) {
+    putClient(clientNewData.id, clientNewData).then((data) => {
+      const newClients = clients.map((client) =>
+        client.id === clientNewData.id ? data : client
+      );
+      setClients(newClients);
+    });
   }
 
   function handleDeleteClient(id) {
-    const newClients = clients.filter((client) => client.id === id);
-    setClients(newClients);
+    deleteClient(id).then(() => {
+      const newClients = clients.filter((client) => client.id !== id);
+      setClients(newClients);
+    });
   }
 
   const value = {
@@ -32,13 +37,7 @@ export function ClientsProvider({ children }) {
   };
 
   useEffect(() => {
-    if (clients.length)
-      localStorage.setItem("clients", JSON.stringify(clients));
-  }, [clients]);
-
-  useEffect(() => {
-    const savedClients = JSON.parse(localStorage.getItem("clients"));
-    if (savedClients) setClients(savedClients);
+    getClients().then((data) => setClients(data));
   }, []);
 
   return (

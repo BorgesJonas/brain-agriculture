@@ -9,7 +9,6 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 
 export function StateChart() {
   const { clients } = useClientsContext();
-
   const colors = generateColors(states.length);
 
   const totalsByState = clients.reduce((acc, user) => {

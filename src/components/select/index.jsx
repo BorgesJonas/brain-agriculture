@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import Select from "react-select";
 import { useFormContext, Controller } from "react-hook-form";
 import { AnimatePresence } from "framer-motion";
@@ -9,25 +8,26 @@ import { findInputError, isFormInvalid } from "../../utils";
 import * as Styles from "./styles";
 import { selectStyles } from "./consts";
 
-export function SelectTest({ options, validation, isMulti, ...props }) {
+export function SelectTest(props) {
+  const { options, validation, isMulti, name, id, label } = props;
   const {
     control,
     formState: { errors },
   } = useFormContext();
 
-  const inputErrors = findInputError(errors, props.name);
+  const inputErrors = findInputError(errors, name);
   const isInvalid = isFormInvalid(inputErrors);
 
   return (
     <Controller
       control={control}
-      name={props.name}
+      name={name}
       defaultValue={[]}
       rules={validation}
       render={({ field }) => (
         <Styles.SelectWrapper>
           <Styles.LabelWrapper>
-            <Styles.Label htmlFor={props.id}>{props.label}</Styles.Label>
+            <Styles.Label htmlFor={id}>{label}</Styles.Label>
             <AnimatePresence mode="wait" initial={false}>
               {isInvalid && (
                 <InputError

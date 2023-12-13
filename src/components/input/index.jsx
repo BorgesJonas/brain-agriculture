@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { findInputError, isFormInvalid } from "../../utils";
 import { useFormContext, Controller } from "react-hook-form";
 import { AnimatePresence } from "framer-motion";
@@ -7,25 +6,26 @@ import { InputComponent } from "./components/InputComponent";
 
 import * as Styles from "./styles";
 
-export function Input({ validation, maskFn, ...props }) {
+export function Input(props) {
+  const { validation, maskFn, id, label, name } = props;
   const {
     control,
     formState: { errors },
   } = useFormContext();
 
-  const inputErrors = findInputError(errors, props.name);
+  const inputErrors = findInputError(errors, name);
   const isInvalid = isFormInvalid(inputErrors);
 
   return (
     <Controller
       control={control}
-      name={props.name}
+      name={name}
       rules={validation}
       defaultValue=""
       render={({ field }) => (
         <Styles.InputWrapper>
           <Styles.LabelWrapper>
-            <Styles.Label htmlFor={props.id}>{props.label}</Styles.Label>
+            <Styles.Label htmlFor={id}>{label}</Styles.Label>
             <AnimatePresence mode="wait" initial={false}>
               {isInvalid && (
                 <InputError

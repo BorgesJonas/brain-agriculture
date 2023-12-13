@@ -50,7 +50,7 @@ export function Clients() {
                       </p>
                       <p>
                         <strong>Área Agricultável:</strong>{" "}
-                        {numberMask(client.agricultutalArea.toString())} ha
+                        {numberMask(client.agriculturalArea.toString())} ha
                       </p>
                       <p>
                         <strong>Área de Vegetação:</strong>{" "}

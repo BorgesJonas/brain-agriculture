@@ -93,9 +93,9 @@ export const total_area_validation = {
 };
 
 export const agricultutal_area_validation = {
-  name: "agricultutalArea",
+  name: "agriculturalArea",
   label: "Área agricultável",
-  id: "agricultutalArea",
+  id: "agriculturalArea",
   maskFn: numberMask,
   validation: {
     required: {

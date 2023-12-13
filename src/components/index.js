@@ -1,6 +1,6 @@
-export { Navigation } from "./navigation";
-export { Input } from "./input";
-export { SelectTest } from "./select";
-export { Button } from "./button";
-export { Modal } from "./modal";
-export { NoClientsPage } from "./no-clients-page";
+export * from "./navigation";
+export * from "./input";
+export * from "./select";
+export * from "./button";
+export * from "./modal";
+export * from "./no-clients-page";

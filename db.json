@@ -10,7 +10,7 @@
       },
       "city": "Porto Alegre",
       "totalArea": 12000,
-      "agricultutalArea": 1000,
+      "agriculturalArea": 1000,
       "vegetationArea": 1000,
       "plantedCrops": [
         {

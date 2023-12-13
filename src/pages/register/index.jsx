@@ -53,12 +53,12 @@ export function Register() {
       ...clientData,
       id: id ? id : uuid(),
       document: unmaskDocument(clientData.document),
-      agricultutalArea: maskedNumberStringToNumber(clientData.agricultutalArea),
+      agriculturalArea: maskedNumberStringToNumber(clientData.agriculturalArea),
       vegetationArea: maskedNumberStringToNumber(clientData.vegetationArea),
       totalArea: maskedNumberStringToNumber(clientData.totalArea),
     };
 
-    if (client.agricultutalArea + client.vegetationArea > client.totalArea) {
+    if (client.agriculturalArea + client.vegetationArea > client.totalArea) {
       toast.error(
         "Área Agricultável e área de vegetação não podem ser maiores que a área total",
         { theme: "colored" }

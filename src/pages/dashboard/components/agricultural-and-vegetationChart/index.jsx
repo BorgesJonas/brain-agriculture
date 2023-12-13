@@ -11,7 +11,7 @@ export function AgriculturalAndVegetationChart() {
   const { clients } = useClientsContext();
 
   const totalAgriculturalArea = clients.reduce(
-    (total, client) => total + client.agricultutalArea,
+    (total, client) => total + client.agriculturalArea,
     0
   );
 

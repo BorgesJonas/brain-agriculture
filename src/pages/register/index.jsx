@@ -72,7 +72,7 @@ export function Register() {
       onAddClient(client);
       reset();
     }
-    console.log(client);
+
     toast.success(
       id ? "Cadastro atualizado com sucesso" : "Cadastrado com sucesso!",
       { theme: "colored" }
@@ -96,6 +96,7 @@ export function Register() {
         onSubmit={handleSubmit(onSubmit)}
         noValidate
         autoComplete="off"
+        data-testid="register-form"
       >
         <Styles.FormInputs>
           <Input {...document_validation} />

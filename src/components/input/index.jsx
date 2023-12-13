@@ -2,7 +2,7 @@ import { findInputError, isFormInvalid } from "../../utils";
 import { useFormContext, Controller } from "react-hook-form";
 import { AnimatePresence } from "framer-motion";
 import { InputError } from "../input-error";
-import { InputComponent } from "./components/InputComponent";
+import { InputComponent } from "./components";
 
 import * as Styles from "./styles";
 

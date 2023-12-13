@@ -124,7 +124,6 @@ export const planted_crops_validation = {
   options: crops,
   id: "plantedCrops",
   isMulti: true,
-  maskFn: numberMask,
   validation: {
     required: {
       value: true,

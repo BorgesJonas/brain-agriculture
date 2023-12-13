@@ -37,14 +37,16 @@ export function SelectTest(props) {
               )}
             </AnimatePresence>
           </Styles.LabelWrapper>
+
           <Select
             {...field}
-            {...props}
             placeholder=""
             options={options}
-            isMulti={isMulti}
+            name={name}
+            inputId={id}
             styles={selectStyles}
             noOptionsMessage={() => "Nenhum resultado encontrado"}
+            isMulti={isMulti}
           />
         </Styles.SelectWrapper>
       )}

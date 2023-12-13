@@ -8,6 +8,7 @@ export const Nav = styled("nav")`
   justify-content: space-between;
   align-items: center;
   display: flex;
+  box-shadow: 0 20px 27px 0 rgba(0, 0, 0, 0.05);
 
   @media (max-width: 768px) {
     flex-direction: column;

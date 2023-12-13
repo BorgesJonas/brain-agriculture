@@ -2,7 +2,7 @@ import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { Navigation } from "./components";
 import { ClientsProvider } from "./context";
-import { Register, DashBoard } from "./pages";
+import { Register, Clients, DashBoard } from "./pages";
 
 function AppBaseComponent() {
   return (
@@ -26,6 +26,10 @@ const router = createBrowserRouter([
       {
         path: "cadastro/:id?",
         element: <Register />,
+      },
+      {
+        path: "clientes",
+        element: <Clients />,
       },
       {
         path: "dashboard",

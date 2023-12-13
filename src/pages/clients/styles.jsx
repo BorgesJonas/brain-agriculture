@@ -1,5 +1,13 @@
-import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
+
+export const Section = styled("div")`
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  max-width: 59rem;
+  padding: 1.25rem;
+`;
 
 export const UsersList = styled("ul")`
   display: flex;
@@ -11,6 +19,7 @@ export const UsersList = styled("ul")`
 export const Panel = styled("div")`
   border-radius: 0.375rem;
   border: solid 1px #e5e7eb;
+  box-shadow: 0 20px 27px 0 rgba(0, 0, 0, 0.05);
 `;
 
 export const Header = styled("header")`

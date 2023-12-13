@@ -24,7 +24,7 @@ export function SelectTest({ options, validation, isMulti, ...props }) {
       name={props.name}
       defaultValue={[]}
       rules={validation}
-      render={({ field: { onChange, onBlur, value, name, ref } }) => (
+      render={({ field }) => (
         <Styles.SelectWrapper>
           <Styles.LabelWrapper>
             <Styles.Label htmlFor={props.id}>{props.label}</Styles.Label>
@@ -38,14 +38,11 @@ export function SelectTest({ options, validation, isMulti, ...props }) {
             </AnimatePresence>
           </Styles.LabelWrapper>
           <Select
+            {...field}
+            {...props}
             placeholder=""
             options={options}
-            onChange={onChange}
             isMulti={isMulti}
-            onBlur={onBlur}
-            value={value}
-            name={name}
-            ref={ref}
             styles={selectStyles}
             noOptionsMessage={() => "Nenhum resultado encontrado"}
           />

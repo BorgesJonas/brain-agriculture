@@ -12,6 +12,7 @@ export const Navigation = () => {
       </Styles.Brand>
       <Styles.Links>
         <Link to="dashboard">Dashboard</Link>
+        <Link to="clientes">Clientes</Link>
         <Link to="cadastro">Cadastro</Link>
       </Styles.Links>
     </Styles.Nav>

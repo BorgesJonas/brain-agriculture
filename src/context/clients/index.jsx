@@ -12,18 +12,14 @@ export function ClientsProvider({ children }) {
   }
 
   function handleUpdateClient(clientNewData) {
-    putClient(clientNewData.id, clientNewData).then((data) => {
-      const newClients = clients.map((client) =>
-        client.id === clientNewData.id ? data : client
-      );
-      setClients(newClients);
+    putClient(clientNewData.id, clientNewData).then(() => {
+      getClients().then((data) => setClients(data));
     });
   }
 
   function handleDeleteClient(id) {
     deleteClient(id).then(() => {
-      const newClients = clients.filter((client) => client.id !== id);
-      setClients(newClients);
+      getClients().then((data) => setClients(data));
     });
   }
 

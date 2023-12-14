@@ -14,6 +14,10 @@ export function Modal(props) {
     } else {
       document.body.style.overflow = "";
     }
+
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [isVisible]);
 
   return (

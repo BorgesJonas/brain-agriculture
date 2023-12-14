@@ -1,8 +1,31 @@
-# React + Vite
+# Brain Agriculture
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Descrição
 
-Currently, two official plugins are available:
+A aplicação brain agriculture possibilita o cadastro de fazendas, edição e exclusão das mesmas,
+assim como também um dashboard com detalhes sobre as fazendas cadastradas.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Instalação
+
+Certifique-se de ter o Node.js instalado na sua máquina. Você pode baixá-lo em [nodejs.org](https://nodejs.org/).
+
+1. Clone o repositório:
+
+   ```bash
+   - git clone https://github.com/BorgesJonas/brain-agriculture.git
+
+   ```
+
+2. Para rodar a aplicação node:
+
+   ```bash
+   - cd brain-agriculture
+   - rode o comando npm install
+   rode o comando npm run dev
+
+   ```
+
+3. Para os testes:
+   ```bash
+   - rode o comando npm test
+   ```

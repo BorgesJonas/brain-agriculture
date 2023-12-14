@@ -1,7 +1,7 @@
 {
   "clients": [
     {
-      "document": "02714896006",
+      "document": "57275351072",
       "productorName": "Jonas Borges",
       "farmName": "Farm Teste",
       "state": {
@@ -64,6 +64,10 @@
         {
           "value": "algodao",
           "label": "Algodão"
+        },
+        {
+          "value": "cafe",
+          "label": "Café"
         }
       ],
       "id": "b69628ad-5bf3-48f3-9bd1-8f7aa1b1b9c3"

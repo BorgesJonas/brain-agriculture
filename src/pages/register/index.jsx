@@ -37,7 +37,7 @@ export function Register() {
   function handleDeleteClient() {
     onDeleteClient(id);
     toast.error("Cadastro excluído com sucesso", { theme: "colored" });
-    navigate("/dashboard");
+    navigate("/clientes");
   }
 
   function onSubmit(clientData) {

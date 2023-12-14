@@ -4,6 +4,10 @@ import { MemoryRouter } from "react-router-dom";
 import { ClientsProvider } from "../../context";
 import { DashBoard } from "./index";
 
+vi.mock("react-chartjs-2", () => ({
+  Pie: () => null,
+}));
+
 describe("Dashboard", () => {
   test("renders DashBoard with client data", () => {
     vi.mock("../../context", async (importModule) => {

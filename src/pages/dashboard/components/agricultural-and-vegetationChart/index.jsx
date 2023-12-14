@@ -3,7 +3,7 @@ import { Pie } from "react-chartjs-2";
 
 import { useClientsContext } from "src/context";
 import { generateColors } from "src/utils";
-import { Card } from "../Card";
+import { Card } from "../card";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 

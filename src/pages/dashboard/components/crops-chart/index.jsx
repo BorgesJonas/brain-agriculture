@@ -2,7 +2,7 @@ import { Pie } from "react-chartjs-2";
 
 import { useClientsContext } from "src/context";
 import { crops, generateColors } from "src/utils";
-import { Card } from "../Card";
+import { Card } from "../card";
 
 export function CropsChart() {
   const { clients } = useClientsContext();

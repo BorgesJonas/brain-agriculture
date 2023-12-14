@@ -1,9 +1,10 @@
 import * as Styles from "./styles";
 
 export function Button(props) {
-  const { danger } = props;
+  const { variant, ...otherProps } = props;
+
   return (
-    <Styles.Button {...props} danger={danger}>
+    <Styles.Button {...otherProps} variant={variant}>
       {props.children}
     </Styles.Button>
   );

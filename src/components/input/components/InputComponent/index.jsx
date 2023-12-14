@@ -3,7 +3,7 @@ import { useEffect, useState, forwardRef } from "react";
 import * as Styles from "./styles";
 
 export const InputComponent = forwardRef((props, ref) => {
-  const { value, maskFn, onChange } = props;
+  const { value, maskFn, onChange, ...otherProps } = props;
   const [inputValue, setInputValue] = useState("");
 
   function handleChangeValue(valueToChange) {
@@ -22,7 +22,7 @@ export const InputComponent = forwardRef((props, ref) => {
 
   return (
     <Styles.Input
-      {...props}
+      {...otherProps}
       value={inputValue}
       ref={ref}
       onChange={handleChange}

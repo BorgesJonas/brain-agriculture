@@ -10,8 +10,8 @@ export const Button = styled("button")`
   font-size: 0.875rem;
   color: #fff;
 
-  ${({ danger }) =>
-    danger &&
+  ${({ variant }) =>
+    variant === "danger" &&
     css`
       background-color: rgb(239 68 68 / 1);
       border-color: rgb(239 68 68 / 1);

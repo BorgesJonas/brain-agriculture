@@ -7,7 +7,7 @@ import { InputComponent } from "./components";
 import * as Styles from "./styles";
 
 export function Input(props) {
-  const { validation, maskFn, id, label, name } = props;
+  const { validation, maskFn, id, label, name, ...otherProps } = props;
   const {
     control,
     formState: { errors },
@@ -35,7 +35,13 @@ export function Input(props) {
               )}
             </AnimatePresence>
           </Styles.LabelWrapper>
-          <InputComponent {...field} {...props} maskFn={maskFn} />
+          <InputComponent
+            {...field}
+            {...otherProps}
+            id={id}
+            name={name}
+            maskFn={maskFn}
+          />
         </Styles.InputWrapper>
       )}
     />

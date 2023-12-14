@@ -8,7 +8,7 @@ import { findInputError, isFormInvalid } from "../../utils";
 import * as Styles from "./styles";
 import { selectStyles } from "./consts";
 
-export function SelectTest(props) {
+export function MultiSelect(props) {
   const { options, validation, isMulti, name, id, label } = props;
   const {
     control,

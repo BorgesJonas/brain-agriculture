@@ -43,6 +43,30 @@
         }
       ],
       "id": "5a3a5851-6651-4fe8-b115-05c06312be80"
+    },
+    {
+      "document": "01848484888",
+      "productorName": "Carlos Teste",
+      "farmName": "Farm 3",
+      "state": {
+        "value": "ES",
+        "label": "Espírito Santo"
+      },
+      "city": "Brasília",
+      "totalArea": 12000,
+      "agriculturalArea": 1000,
+      "vegetationArea": 10000,
+      "plantedCrops": [
+        {
+          "value": "soja",
+          "label": "Soja"
+        },
+        {
+          "value": "algodao",
+          "label": "Algodão"
+        }
+      ],
+      "id": "b69628ad-5bf3-48f3-9bd1-8f7aa1b1b9c3"
     }
   ]
 }

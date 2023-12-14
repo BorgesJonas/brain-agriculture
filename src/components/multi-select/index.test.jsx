@@ -4,7 +4,7 @@ import userEvent from "@testing-library/user-event";
 import { FormProvider, useForm } from "react-hook-form";
 import selectEvent from "react-select-event";
 
-import { SelectTest } from "./index";
+import { MultiSelect } from "./index";
 
 const options = [
   {
@@ -41,7 +41,7 @@ describe("Select", () => {
   test("Should render component", () => {
     render(
       <Component>
-        <SelectTest
+        <MultiSelect
           options={options}
           id="select"
           name="select"
@@ -57,7 +57,7 @@ describe("Select", () => {
   test("Should select value", async () => {
     render(
       <Component>
-        <SelectTest
+        <MultiSelect
           options={options}
           id="select"
           name="select"

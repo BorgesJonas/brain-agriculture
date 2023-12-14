@@ -28,7 +28,7 @@ export function Modal(props) {
               <MdClose />
             </Styles.Close>
             <Styles.Footer>
-              <Button type="button" onClick={onConfirm} danger>
+              <Button type="button" onClick={onConfirm} variant="danger">
                 Confirmar
               </Button>
               <Button type="button" onClick={onClose}>

@@ -4,19 +4,19 @@ import { FormProvider, useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { v4 as uuid } from "uuid";
 
-import { Input, SelectTest, Button, Modal } from "src/components";
+import { Input, MultiSelect, Button, Modal } from "src/components";
 import { useClientsContext } from "src/context";
 import { maskedNumberStringToNumber, unmaskDocument } from "src/utils";
 import {
-  document_validation,
-  productor_name_validation,
-  farm_name_validation,
-  state_validation,
-  city_validation,
-  total_area_validation,
-  agricultutal_area_validation,
-  vegetation_area_validation,
-  planted_crops_validation,
+  documentValidation,
+  productorNameValidation,
+  farmNameValidation,
+  stateValidation,
+  cityValidation,
+  totalAreaValidation,
+  agricultutalAreaValidation,
+  vegetationAreaValidation,
+  plantedCropsValidation,
 } from "./consts";
 
 import * as Styles from "./styles";
@@ -99,18 +99,18 @@ export function Register() {
         data-testid="register-form"
       >
         <Styles.FormInputs>
-          <Input {...document_validation} />
-          <Input {...productor_name_validation} />
-          <Input {...farm_name_validation} />
-          <SelectTest {...state_validation} />
-          <Input {...city_validation} />
-          <Input {...total_area_validation} />
-          <Input {...agricultutal_area_validation} />
-          <Input {...vegetation_area_validation} />
-          <SelectTest {...planted_crops_validation} />
+          <Input {...documentValidation} />
+          <Input {...productorNameValidation} />
+          <Input {...farmNameValidation} />
+          <MultiSelect {...stateValidation} />
+          <Input {...cityValidation} />
+          <Input {...totalAreaValidation} />
+          <Input {...agricultutalAreaValidation} />
+          <Input {...vegetationAreaValidation} />
+          <MultiSelect {...plantedCropsValidation} />
           <Button type="submit">{id ? "Editar" : "Cadastrar"}</Button>
           {id && (
-            <Button type="button" onClick={handleModalVisible} danger={true}>
+            <Button type="button" onClick={handleModalVisible} variant="danger">
               Excluir
             </Button>
           )}

@@ -1,6 +1,6 @@
 import { states, crops, documentMask, numberMask } from "src/utils";
 
-export const document_validation = {
+export const documentValidation = {
   name: "document",
   label: "Documento",
   id: "document",
@@ -19,7 +19,7 @@ export const document_validation = {
   },
 };
 
-export const productor_name_validation = {
+export const productorNameValidation = {
   name: "productorName",
   label: "Nome Produtor",
   type: "text",
@@ -36,7 +36,7 @@ export const productor_name_validation = {
   },
 };
 
-export const farm_name_validation = {
+export const farmNameValidation = {
   name: "farmName",
   label: "Nome Fazenda",
   type: "text",
@@ -53,7 +53,7 @@ export const farm_name_validation = {
   },
 };
 
-export const state_validation = {
+export const stateValidation = {
   name: "state",
   label: "Estado",
   id: "state",
@@ -66,7 +66,7 @@ export const state_validation = {
   },
 };
 
-export const city_validation = {
+export const cityValidation = {
   name: "city",
   label: "Cidade",
   type: "text",
@@ -79,7 +79,7 @@ export const city_validation = {
   },
 };
 
-export const total_area_validation = {
+export const totalAreaValidation = {
   name: "totalArea",
   label: "Área total",
   id: "totalArea",
@@ -92,7 +92,7 @@ export const total_area_validation = {
   },
 };
 
-export const agricultutal_area_validation = {
+export const agricultutalAreaValidation = {
   name: "agriculturalArea",
   label: "Área agricultável",
   id: "agriculturalArea",
@@ -105,7 +105,7 @@ export const agricultutal_area_validation = {
   },
 };
 
-export const vegetation_area_validation = {
+export const vegetationAreaValidation = {
   name: "vegetationArea",
   label: "Área de vegetação",
   id: "vegetationArea",
@@ -118,7 +118,7 @@ export const vegetation_area_validation = {
   },
 };
 
-export const planted_crops_validation = {
+export const plantedCropsValidation = {
   name: "plantedCrops",
   label: "Culturas",
   options: crops,

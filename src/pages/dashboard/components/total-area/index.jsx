@@ -1,4 +1,4 @@
-import { Card } from "../Card";
+import { Card } from "../card";
 
 import { useClientsContext } from "src/context";
 import { numberMask } from "src/utils";

@@ -21,7 +21,7 @@ Certifique-se de ter o Node.js instalado na sua máquina. Você pode baixá-lo e
    ```bash
    - cd brain-agriculture
    - rode o comando npm install
-   rode o comando npm run dev
+   - rode o comando npm run dev
 
    ```
 
